@@ -1,0 +1,68 @@
+{
+  "name": "ts-bolierplate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "start": "ts-node index.ts",
+    "start:watch": "ts-node-dev index.ts",
+    "start:prod": "npm run build && pm2 start dist/index.js -i -1",
+    "build": "rm -rf ./dist/* && tsc --build",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix",
+    "test": "export NODE_ENV=test && npm run migrate && jest --watchAll --no-cache --maxWorkers=1 && npm run migrate:reset",
+    "migrate": "knex migrate:latest --knexfile ./knexfile.ts",
+    "migrate:reset": "knex migrate:rollback --knexfile ./knexfile.ts"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "setupFilesAfterEnv": [
+      "./src/test/setup.ts"
+    ],
+    "transformIgnorePatterns": [
+      "node_modules/(?!axios)"
+    ]
+  },
+  "author": "Elshafeay",
+  "license": "ISC",
+  "dependencies": {
+    "autobind-decorator": "^2.4.0",
+    "axios": "^0.21.4",
+    "cron": "^2.1.0",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-async-errors": "^3.1.1",
+    "joi": "^17.5.0",
+    "knex": "^1.0.4",
+    "moment": "^2.29.4",
+    "morgan": "^1.10.0",
+    "mysql2": "^2.3.3",
+    "pm2": "^5.2.2",
+    "reflect-metadata": "^0.1.13",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.3.5",
+    "winston": "^3.4.0"
+  },
+  "devDependencies": {
+    "@types/cron": "^2.0.0",
+    "@types/express": "^4.17.9",
+    "@types/jasmine": "^3.10.2",
+    "@types/jest": "^27.4.1",
+    "@types/joi": "^17.2.3",
+    "@types/knex": "^0.16.1",
+    "@types/moment": "^2.13.0",
+    "@types/morgan": "^1.9.3",
+    "@types/node": "^16.11.17",
+    "@types/supertest": "^2.0.11",
+    "@typescript-eslint/eslint-plugin": "^5.6.0",
+    "@typescript-eslint/parser": "^5.6.0",
+    "eslint": "^8.4.1",
+    "jest": "^27.5.1",
+    "jest-mock-axios": "^4.7.0-beta",
+    "supertest": "^6.2.2",
+    "ts-jest": "^27.1.4",
+    "ts-node": "^9.1.1",
+    "tsc-watch": "^4.2.9"
+  }
+}

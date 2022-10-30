@@ -1,0 +1,148 @@
+{
+	"info": {
+		"_postman_id": "fd3451c3-e760-4fd7-b040-7233b67b148b",
+		"name": "Sarwa",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7850551"
+	},
+	"item": [
+		{
+			"name": "Transactions Webhook",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"transaction_id\" : \"123456\",\r\n  \"amount\": 350,\r\n  \"currency\" : \"USD\",\r\n  \"account_id\": \"12345\",\r\n  \"destination_account_id\": \"11111\",\r\n  \"received_at\": \"2022-10-29 15:00:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/transactions",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"transactions"
+					]
+				},
+				"description": "This webhook/endpoint is used to notify our system  \n(from 3rd parties) that a new transaction has been placed."
+			},
+			"response": []
+		},
+		{
+			"name": "Get Master Account Details",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/master-account",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"master-account"
+					]
+				},
+				"description": "This endpoint is used to fetch the details of the Master Account (i.e. balance)"
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch/Filter Transactions",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"account_id\": \"11111\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/transactions/search",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"transactions",
+						"search"
+					]
+				},
+				"description": "This endpoint is used to filter transactions by account_id."
+			},
+			"response": []
+		},
+		{
+			"name": "Get Due Transactions",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/transactions/due",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"transactions",
+						"due"
+					]
+				},
+				"description": "This endpoint is used to get the due transactions in the system."
+			},
+			"response": []
+		},
+		{
+			"name": "Disburse Due Transactions",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/transactions/disburse",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"transactions",
+						"disburse"
+					]
+				},
+				"description": "This endpoint is used to manually disburse the due transactions anytime."
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "localhost:3000",
+			"type": "string"
+		}
+	]
+}
